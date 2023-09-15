@@ -9,7 +9,8 @@ import {
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import login from "@/app/services/login";
-import React, { FC } from "react";
+import { useRouter } from "next/navigation";
+import React, { FC, useState } from "react";
 import { FieldValues, Form, useForm } from "react-hook-form";
 
 interface LoginInfo {
@@ -19,10 +20,17 @@ interface LoginInfo {
 
 const LoginPage: FC = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [error, setError] = useState<string>("")
+  const router = useRouter();
   const onSubmit = (data: LoginInfo) => {
-     login(data)
-    reset();
-   
+    login(data).then((response) => {
+      if (response.success) {
+        router.push("/dashboard");
+      } else {
+        setError(response.message)
+      }
+    });
+    
   };
   return (
     <main className="flex min-h-screen min-w-screen justify-center items-center">
@@ -34,10 +42,10 @@ const LoginPage: FC = () => {
               <div className="my-4">
                 <Label htmlFor="email">Email</Label>
                 <Input
-                  type="email"
+                  type="text"
                   id="email"
-                  placeholder="Email"
-                  {...register("email")}
+                  placeholder="Email or Username"
+                  {...register("credential")}
                 />
               </div>
               <div className="my-4">
@@ -49,6 +57,7 @@ const LoginPage: FC = () => {
                   {...register("password")}
                 />
               </div>
+<p className="text-center text-red-600 my-2">{error}</p>
               <Button type="submit" className="w-full">
                 Login
               </Button>

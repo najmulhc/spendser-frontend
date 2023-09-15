@@ -6,9 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import DashboardHeader from "./dashboard/components/DashboardHeader";
 
 export default function Home() {
-  useEffect(() => {
-    localStorage.setItem("user", "najmulhc@outlook.com");
-  }, []);
+ 
   return (
     <>
       <DashboardHeader />

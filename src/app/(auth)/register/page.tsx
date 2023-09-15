@@ -8,13 +8,28 @@ import {
 } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
+import registerUser from "@/app/services/register";
+import { RegisterInfo } from "@/types";
+import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 
 const RegisterPage: FC = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data:any) => {
-    console.log(data);
+  const router = useRouter();
+  const onSubmit = async (data: any) => {
+    const user: RegisterInfo = {
+      email: data.email,
+      username: data.username,
+      password: data.password,
+    };
+    const result = await registerUser(user);
+    if (result.success) {
+      localStorage.setItem("token", result.token);
+      router.push("/dashboard");
+    } else {
+      console.log(result.message);
+    }
   };
   return (
     <main className="flex min-h-screen min-w-screen justify-center items-center">
