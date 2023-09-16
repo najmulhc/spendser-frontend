@@ -20,17 +20,16 @@ interface LoginInfo {
 
 const LoginPage: FC = () => {
   const { register, handleSubmit, reset } = useForm();
-  const [error, setError] = useState<string>("")
+  const [error, setError] = useState<string>("");
   const router = useRouter();
   const onSubmit = (data: LoginInfo) => {
     login(data).then((response) => {
       if (response.success) {
         router.push("/dashboard");
       } else {
-        setError(response.message)
+        setError(response.message);
       }
     });
-    
   };
   return (
     <main className="flex min-h-screen min-w-screen justify-center items-center">
@@ -38,6 +37,7 @@ const LoginPage: FC = () => {
         <CardHeader>
           <CardTitle className="text-center">Login</CardTitle>
           <CardContent>
+            {/* @ts-ignore */}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="my-4">
                 <Label htmlFor="email">Email</Label>
@@ -57,7 +57,7 @@ const LoginPage: FC = () => {
                   {...register("password")}
                 />
               </div>
-<p className="text-center text-red-600 my-2">{error}</p>
+              <p className="text-center text-red-600 my-2">{error}</p>
               <Button type="submit" className="w-full">
                 Login
               </Button>

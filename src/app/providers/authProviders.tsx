@@ -7,7 +7,11 @@ import React, { useState } from "react";
 const AuthProtector = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [state, setState] = useState<any>();
-  getUser().then((data) => {
+  const token =
+    typeof window !== "undefined"
+      ? (window.localStorage.getItem("token") as string)
+      : "false";
+  getUser(token).then((data) => {
     if (data.success) {
       setState(children);
     } else {

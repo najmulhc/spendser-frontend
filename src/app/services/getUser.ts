@@ -1,5 +1,5 @@
-const getUser = async () => {
-  const token = localStorage.getItem("token");
+"use client";
+const getUser = async (token: string) => {
   const response = await fetch(
     "https://viridian-pelican-belt.cyclic.app/user/",
     {

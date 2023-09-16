@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 
 const DashboardHeader = () => {
   const [user, setUser] = useState<User>({
@@ -23,18 +23,24 @@ const DashboardHeader = () => {
     email: "",
   });
   const router = useRouter();
+  const token =
+    typeof window !== "undefined"
+      ? (window.localStorage.getItem("token") as string)
+      : "false";
   useEffect(() => {
-    getUser().then((data) => {
+    getUser(token).then((data) => {
       setUser(data.user);
     });
   }, []);
-  const handleLogOut = (e: Event) => {
+  const handleLogOut = (e: any) => {
     e.preventDefault();
-    if (user.username) {
+    if (user) {
       localStorage.removeItem("token");
       router.push("/login");
+    } else {
+      router.push("/login");
     }
-  }; 
+  };
   return (
     <header className="flex justify-between px-[100px] py-4">
       <Link href="/" className="font-bold text-2xl ">
@@ -60,9 +66,9 @@ const DashboardHeader = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink
-              href={user && "/profile"}
+              href="#"
               className={navigationMenuTriggerStyle()}
-              onClick={handleLogOut}
+              onClick={(event: any) => handleLogOut(event) as void}
             >
               {`${user ? user.username : "Log In"}`}
             </NavigationMenuLink>

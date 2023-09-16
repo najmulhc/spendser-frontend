@@ -1,13 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { set } from "react-hook-form";
 import getUser from "../services/getUser";
 
 const Page = () => {
   const [email, setEmail] = useState<String | null>("");
 
   useEffect(() => {
-    getUser().then((data) => {
+    const token =
+      typeof window !== "undefined"
+        ? window.localStorage.getItem("token") as string
+        : "false";
+    getUser(token).then((data) => {
       if (data.success) {
         setEmail(data.user.username);
       }
