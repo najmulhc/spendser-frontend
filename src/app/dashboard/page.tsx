@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import getUser from "../services/getUser";
+import PageMain from "./components/PageMain";
 
 const Page = () => {
   const [email, setEmail] = useState<String | null>("");
@@ -8,7 +9,7 @@ const Page = () => {
   useEffect(() => {
     const token =
       typeof window !== "undefined"
-        ? window.localStorage.getItem("token") as string
+        ? (window.localStorage.getItem("token") as string)
         : "false";
     getUser(token).then((data) => {
       if (data.success) {
@@ -17,11 +18,10 @@ const Page = () => {
     });
   }, []);
   return (
-    <main>
-      <h1 className="m-[100px] text-4xl">
-        {email ? `username: ${email}` : "No email address found!"}
-      </h1>
-    </main>
+    <PageMain>
+      <div className="bg-blue-600 w-[100px] h-[500px] m-4"></div>
+      <div className="bg-blue-600 w-[100px] h-[500px] m-4"></div>
+    </PageMain>
   );
 };
 

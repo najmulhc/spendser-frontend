@@ -1,5 +1,6 @@
 "use client";
 import ThemeButton from "@/app/components/themebutton";
+import { Button } from "@/app/components/ui/button";
 
 import {
   NavigationMenu,
@@ -18,10 +19,11 @@ import { useRouter } from "next/navigation";
 import React, { MouseEvent, useEffect, useState } from "react";
 
 const DashboardHeader = () => {
-  const [user, setUser] = useState<User>({
+  const initialUser = {
     username: "",
     email: "",
-  });
+  };
+  const [user, setUser] = useState<User>(initialUser);
   const router = useRouter();
   const token =
     typeof window !== "undefined"
@@ -42,7 +44,7 @@ const DashboardHeader = () => {
     }
   };
   return (
-    <header className="flex justify-between px-[100px] py-4">
+    <header className="sticky top-0 left-0 min-w-screen z-0 h-[70px] bg-white dark:bg-[#09090b] flex justify-between px-[100px] py-4 ">
       <Link href="/" className="font-bold text-2xl ">
         SpnendSer
       </Link>
@@ -70,7 +72,8 @@ const DashboardHeader = () => {
               className={navigationMenuTriggerStyle()}
               onClick={(event: any) => handleLogOut(event) as void}
             >
-              {`${user ? user.username : "Log In"}`}
+              {user !== initialUser && user?.username}
+              {!user && <Button>Log In</Button>}
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>

@@ -10,14 +10,14 @@ const ThemeButton = () => {
   return (
     <>
       <Button variant="ghost" className="dark:hidden block" onClick={() => setTheme("dark")}>
-        <Sun width={24} height={24} color="#18181b" />
+        <Sun width={24} height={24} className="dark:stroke-white stroke-black" />
       </Button>
       <Button
         variant="ghost"
         className="dark:block hidden"
         onClick={() => setTheme("light")}
       >
-        <Moon width={24} height={24} color="#fafafa" />
+        <Moon width={24} height={24} className="dark:stroke-white stroke-black" />
       </Button>
     </>
   );

@@ -15,12 +15,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <ThemeProvider>
           <DashboardHeader />
           <AuthProtector>
-            <main className="flex justify-start">
+            <main className="flex relative min-w-screen">
               <DashboardSidebar />
-              <Separator
-                className="min-h-screen hidden md:block"
-                orientation="vertical"
-              /> 
               {children}
             </main>
           </AuthProtector>
