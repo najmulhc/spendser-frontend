@@ -1,5 +1,8 @@
 "use client";
+ 
+
 const getUser = async (token: string) => {
+ 
   const response = await fetch(
     "https://viridian-pelican-belt.cyclic.app/user/",
     {
@@ -11,6 +14,7 @@ const getUser = async (token: string) => {
     }
   );
   const data = await response.json();
+
   return data;
 };
 

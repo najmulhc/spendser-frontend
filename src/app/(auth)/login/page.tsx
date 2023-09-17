@@ -8,10 +8,12 @@ import {
 } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
+import { setUser } from "@/app/redux/features/userSlice";
 import login from "@/app/services/login";
 import { useRouter } from "next/navigation";
 import React, { FC, useState } from "react";
 import { FieldValues, Form, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 interface LoginInfo {
   email: string;
@@ -22,9 +24,16 @@ const LoginPage: FC = () => {
   const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState<string>("");
   const router = useRouter();
+  const dispatch = useDispatch();
   const onSubmit = (data: LoginInfo) => {
     login(data).then((response) => {
       if (response.success) {
+        dispatch(
+          setUser({
+            email: response.user.email,
+            username: response.user.username,
+          })
+        );
         router.push("/dashboard");
       } else {
         setError(response.message);

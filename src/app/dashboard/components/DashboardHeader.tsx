@@ -6,7 +6,9 @@ import {
   NavigationMenu,
   NavigationMenuItem,
   navigationMenuTriggerStyle,
-} from "@/app/components/ui/navigation-menu";
+} from "@/app/components/ui/navigation-menu"; 
+import { setUser } from "@/app/redux/features/userSlice";
+import { StoreType } from "@/app/redux/store";
 import getUser from "@/app/services/getUser";
 import { User } from "@/types";
 import {
@@ -17,27 +19,42 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import React, { MouseEvent, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const DashboardHeader = () => {
-  const initialUser = {
-    username: "",
-    email: "",
-  };
-  const [user, setUser] = useState<User>(initialUser);
+  const { user } = useSelector((state: StoreType) => state);
   const router = useRouter();
   const token =
     typeof window !== "undefined"
       ? (window.localStorage.getItem("token") as string)
       : "false";
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getUser(token).then((data) => {
-      setUser(data.user);
-    });
-  }, []);
+    if(!user.username) {
+      getUser(token).then((data) => {
+        dispatch(
+          setUser({
+            username: data.user?.username,
+            email: data.user?.username,
+          })
+        );
+      });
+    }
+  }, [dispatch, token ,  user.username]);
+
+  // event handler for log out
   const handleLogOut = (e: any) => {
     e.preventDefault();
     if (user) {
       localStorage.removeItem("token");
+      dispatch(
+        setUser({
+          username: "",
+          email: "",
+        })
+      );
       router.push("/login");
     } else {
       router.push("/login");
@@ -72,7 +89,7 @@ const DashboardHeader = () => {
               className={navigationMenuTriggerStyle()}
               onClick={(event: any) => handleLogOut(event) as void}
             >
-              {user !== initialUser && user?.username}
+              {user?.username && user?.username}
               {!user && <Button>Log In</Button>}
             </NavigationMenuLink>
           </NavigationMenuItem>

@@ -4,6 +4,8 @@ import ThemeProvider from "../providers/provider";
 import DashboardHeader from "./components/DashboardHeader";
 import { Separator } from "../components/ui/separator";
 import AuthProtector from "../providers/authProviders";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,13 +15,15 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <html>
       <body className={inter.className}>
         <ThemeProvider>
-          <DashboardHeader />
-          <AuthProtector>
-            <main className="flex relative min-w-screen">
-              <DashboardSidebar />
-              {children}
-            </main>
-          </AuthProtector>
+         
+            <DashboardHeader />
+            <AuthProtector>
+              <main className="flex relative min-w-screen">
+                <DashboardSidebar />
+                {children}
+              </main>
+            </AuthProtector>
+      
         </ThemeProvider>
       </body>
     </html>
