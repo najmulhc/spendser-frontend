@@ -89,8 +89,8 @@ const DashboardHeader = () => {
               className={navigationMenuTriggerStyle()}
               onClick={(event: any) => handleLogOut(event) as void}
             >
-              {user?.username && user?.username}
-              {!user && <Button>Log In</Button>}
+              {user.username && user.username}
+              {!user.username && <Button>Log In</Button>}
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
