@@ -14,6 +14,8 @@ import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 
+export const dynamic = 'force-dynamic';
+
 const RegisterPage: FC = () => {
   const { register, handleSubmit } = useForm();
   const router = useRouter();

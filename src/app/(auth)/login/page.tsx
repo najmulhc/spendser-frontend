@@ -20,6 +20,8 @@ interface LoginInfo {
   password: string;
 }
 
+export const dynamic = "force-dynamic";
+
 const LoginPage: FC = () => {
   const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState<string>("");

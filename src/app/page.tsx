@@ -3,11 +3,10 @@
 import DashboardHeader from "./dashboard/components/DashboardHeader";
 import useUser from "./hooks/useUser";
 
-
 export const dynamic = "force-dynamic";
 
 export default function Home() {
-  const token = localStorage?.getItem("token") as string || "";
+  const token = (localStorage?.getItem("token") as string) || "";
   const { user } = useUser(token);
 
   return (
