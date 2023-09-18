@@ -15,8 +15,19 @@ export type RegisterInfo = {
   password: string;
 };
 
-
 export interface User {
-  username: string, 
-  email:string,
+  username: string;
+  email: string;
+}
+
+export interface Account {
+  balence: number;
+  deposit: number;
+  withdraw: number;
+}
+
+export interface PostTransactionType {
+  token: string;
+  amount: number | string;
+  type: "add" | "spend";
 }

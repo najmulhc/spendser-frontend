@@ -1,9 +1,13 @@
 "use client";
-import PageMain from "./components/PageMain"; 
+import PageMain from "./components/PageMain";
 import AccountCard from "./components/AccountCard"; 
-import ThemeButton from "../components/themebutton";
+import { useSelector } from "react-redux";
+import { StoreType } from "../redux/store";
 
 const Page = () => {
+  const { balence, deposit, withdraw } = useSelector(
+    (state: StoreType) => state.account
+  );
   return (
     <PageMain>
       <section className=" w-full h-full">
@@ -12,13 +16,11 @@ const Page = () => {
         </h2>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4 mt-4">
-          <AccountCard title="Balence" amount={0} />
-          <AccountCard title="Diposit" amount={0} />
-          <AccountCard title="Withdraw" amount={5} />
+          <AccountCard title="Balence" amount={balence} />
+          <AccountCard title="Diposit" amount={deposit} />
+          <AccountCard title="Withdraw" amount={withdraw} />
         </div>
-  
       </section>
-    
     </PageMain>
   );
 };

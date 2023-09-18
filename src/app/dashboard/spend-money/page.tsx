@@ -14,6 +14,7 @@ import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 
 const SpendMoneyPage = () => {
+    const token = window.localStorage.getItem("token") as string | "";
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data:any) => {
     console.log(data);
@@ -32,7 +33,7 @@ const SpendMoneyPage = () => {
           >
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="amount">Amount</Label>
-              <Input id="amount" type="number" {...register("amount")} />
+              <Input id="amount" type="number" placeholder="Enter amount" {...register("amount")} />
             </div>
             <Button type="submit" className="w-full">
               Submit
