@@ -34,6 +34,7 @@ const LoginPage: FC = () => {
             username: response.user.username,
           })
         );
+        window.localStorage.setItem("token", response.token);
         router.push("/dashboard");
       } else {
         setError(response.message);

@@ -7,11 +7,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Spendser | Your personal money manager",
-  description: "This is a full stack personal money management app using MERN stack and TypeScript that is developed by",
-  authors:[{
-    name: "Najmul Huda Chowdhury Chayan", url: "https://najmulhc.vercel.app"
-  }]
+  description:
+    "This is a full stack personal money management app using MERN stack and TypeScript that is developed by",
+  authors: [
+    {
+      name: "Najmul Huda Chowdhury Chayan",
+      url: "https://najmulhc.vercel.app",
+    },
+  ],
 };
+
+export const dynamic = "force-dynamic";
 
 export default function RootLayout({
   children,
@@ -22,7 +28,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          
           {children}
         </ThemeProvider>
       </body>

@@ -6,43 +6,24 @@ import {
   NavigationMenu,
   NavigationMenuItem,
   navigationMenuTriggerStyle,
-} from "@/app/components/ui/navigation-menu"; 
+} from "@/app/components/ui/navigation-menu";
+import useUser from "@/app/hooks/useUser";
 import { setUser } from "@/app/redux/features/userSlice";
-import { StoreType } from "@/app/redux/store";
-import getUser from "@/app/services/getUser";
-import { User } from "@/types";
 import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-import React, { MouseEvent, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+export const dynamic = "force-dynamic";
 
 const DashboardHeader = () => {
-  const { user } = useSelector((state: StoreType) => state);
   const router = useRouter();
-  const token =
-    typeof window !== "undefined"
-      ? (window.localStorage.getItem("token") as string)
-      : "false";
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if(!user.username) {
-      getUser(token).then((data) => {
-        dispatch(
-          setUser({
-            username: data.user?.username,
-            email: data.user?.username,
-          })
-        );
-      });
-    }
-  }, [dispatch, token ,  user.username]);
+  const token = window.localStorage.getItem("token") as string | "";
+  const { user } = useUser(token);
 
   // event handler for log out
   const handleLogOut = (e: any) => {

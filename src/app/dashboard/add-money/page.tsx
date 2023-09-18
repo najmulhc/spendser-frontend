@@ -1,3 +1,4 @@
+'use client';
 import PageMain from "../components/PageMain";
 
 const AddMoneyPage = () => {
