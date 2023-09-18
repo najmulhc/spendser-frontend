@@ -9,7 +9,7 @@ const PageMain = ({
 }) => {
   return (
     <main
-      className={`}abosulute z-[-1] border-l dark:border-[#ffffff20] border-[#00000020] px-4 ${className}`}
+      className={`abosulute  border-l dark:border-[#ffffff20] border-[#00000020] px-4 w-full ${className}`}
     >
       {children}
     </main>

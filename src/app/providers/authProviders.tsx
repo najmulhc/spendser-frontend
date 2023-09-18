@@ -15,7 +15,7 @@ const AuthProtector = ({ children }: { children: React.ReactNode }) => {
   if (user.username) {
     return <>{children}</>;
   } else {
- 
+  
      return (
       <h1>No user exists</h1>
      )

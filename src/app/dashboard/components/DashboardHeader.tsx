@@ -22,7 +22,7 @@ export const dynamic = "force-dynamic";
 const DashboardHeader = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const token = window.localStorage.getItem("token") as string | "";
+  const token = localStorage.getItem("token") as string | "";
   const { user } = useUser(token);
 
   // event handler for log out
@@ -42,7 +42,7 @@ const DashboardHeader = () => {
     }
   };
   return (
-    <header className="sticky top-0 left-0 min-w-screen z-0 h-[70px] bg-white dark:bg-[#09090b] flex justify-between px-[100px] py-4 ">
+    <header className="sticky top-0 left-0 min-w-screen z-10 h-[70px] bg-white dark:bg-[#09090b] flex justify-between px-[100px] py-4 ">
       <Link href="/" className="font-bold text-2xl ">
         SpnendSer
       </Link>
@@ -56,14 +56,16 @@ const DashboardHeader = () => {
               Home
             </NavigationMenuLink>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              href="/dashboard"
-              className={navigationMenuTriggerStyle()}
-            >
-              Dashboard
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+          {user.username && (
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/dashboard"
+                className={navigationMenuTriggerStyle()}
+              >
+                Dashboard
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          )}
           <NavigationMenuItem>
             <NavigationMenuLink
               href="#"

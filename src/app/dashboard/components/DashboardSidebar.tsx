@@ -15,6 +15,9 @@ const DashboardSidebar = () => {
   return (
     <aside
       className={`sticky  top-[70px] tranistion p-2  h-[calc(100vh-70px)] border-right `}
+      onClick={() => {
+        setIsSideBar(!isSideBar);
+      }}
     >
       <h1
         className={`text-xl ${
@@ -22,9 +25,6 @@ const DashboardSidebar = () => {
             ? "text-left w-[250px]"
             : "w-full flex items-center justify-center"
         } font-semibold mb-4 transition-all`}
-        onClick={() => {
-          setIsSideBar(!isSideBar);
-        }}
       >
         {isSideBar ? (
           <Logo
@@ -36,10 +36,11 @@ const DashboardSidebar = () => {
           "Dashboard"
         )}
       </h1>
-      <Button variant="ghost" className="w-full flex justify-start ">
-        <Link
-          href="/dashboard"
-          className="flex gap-2 justify-start items-start"
+
+      <Link href="/dashboard">
+        <Button
+          variant="ghost"
+          className="w-full flex justify-start items-start gap-2 "
         >
           <Home
             className="stroke-black dark:stroke-white"
@@ -47,35 +48,31 @@ const DashboardSidebar = () => {
             height={20}
           />
           {!isSideBar && "Dashboard Home"}
-        </Link>
-      </Button>
-      <Button variant="ghost" className="w-full flex justify-start ">
-        <Link
-          href="/dashboard/add-money"
-          className="flex gap-2 justify-start items-start"
-        >
+        </Button>
+      </Link>
+
+      <Link href="/dashboard/add-money">
+        <Button variant="ghost" className="w-full flex justify-start gap-2 ">
           <AddMoneyIcon
             className="stroke-black dark:stroke-white"
             width={20}
             height={20}
           />
           {!isSideBar && "Add Money"}
-        </Link>
-      </Button>
-      <Button variant="ghost" className="w-full flex justify-start ">
-        <Link
-          href="/dashboard/spend-money"
-          className="flex gap-2 justify-start items-start"
-        >
+        </Button>
+      </Link>
+
+      <Link href="/dashboard/spend-money">
+        {" "}
+        <Button variant="ghost" className="w-full flex justify-start gap-2 ">
           <SpendMoneyIcon
             className="stroke-black dark:stroke-white"
             width={20}
             height={20}
           />
           {!isSideBar && "Spend Money"}
-        </Link>
-      </Button>
-     
+        </Button>
+      </Link>
     </aside>
   );
 };

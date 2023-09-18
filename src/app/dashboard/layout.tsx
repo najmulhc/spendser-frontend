@@ -12,19 +12,15 @@ export const dynamic = "force-dynamic";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html>
-      <body className={inter.className}>
-        <ThemeProvider>
-          <DashboardHeader />
-          <AuthProtector>
-            <main className="flex relative min-w-screen">
-              <DashboardSidebar />
-              {children}
-            </main>
-          </AuthProtector>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider>
+      <DashboardHeader />
+      <AuthProtector>
+        <main className="flex relative min-w-screen">
+          <DashboardSidebar />
+          {children}
+        </main>
+      </AuthProtector>
+    </ThemeProvider>
   );
 };
 
