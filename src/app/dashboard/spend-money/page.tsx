@@ -12,13 +12,26 @@ import {
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
+import { setAccount } from "@/app/redux/features/accountSlice";
+import postTransaction from "@/app/services/postTransaction";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const SpendMoneyPage = () => {
-    const token = window.localStorage.getItem("token") as string | "";
-  const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data:any) => {
-    console.log(data);
-  };
+   const token = window.localStorage.getItem("token") as string | "";
+   const dispatch = useDispatch();
+   const router = useRouter();
+   const { register, handleSubmit, reset } = useForm();
+   const onSubmit = async (data: any) => {
+     const { amount } = data;
+     const account = await postTransaction({
+       token,
+       amount,
+       type: "spend",
+     });
+     dispatch(setAccount({ ...account }));
+     router.push("/dashboard");
+   };
 
   return (
     <PageMain className="min-w-screen min-h-screen flex justify-center items-center">
