@@ -1,19 +1,33 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../icons/Logo";
 import Link from "next/link";
-import {
-  NavigationMenu, 
-  NavigationMenuItem, 
-} from "../ui/navigation-menu";
+import { NavigationMenu, NavigationMenuItem } from "../ui/navigation-menu";
 import { NavigationMenuList } from "@radix-ui/react-navigation-menu";
 import { Button } from "../ui/button";
-import useUser from "@/app/hooks/useUser";
-export const dynamic = "force-dynamic";
+import { User } from "@/types";
+import getUser from "@/app/services/getUser";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/app/redux/features/userSlice";
+import { useSelector } from "react-redux";
+import { StoreType } from "@/app/redux/store";
 
+export const dynamic = "force-dynamic";
 const Header = () => {
-  const token = localStorage.getItem("token") as string | "";
-  const { user } = useUser(token);
+  const { user } = useSelector((state: StoreType) => state);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      getUser(token).then((data) => {
+        if (data.success) {
+          const { user } = data;
+          dispatch(setUser({ username: user.username, email: user.email }));
+        }
+      });
+    }
+  }, [dispatch]);
+
   return (
     <header className="w-full min-h-[60px]  px-4 md:px-[4rem] flex items-center justify-between">
       <Link href="/">
