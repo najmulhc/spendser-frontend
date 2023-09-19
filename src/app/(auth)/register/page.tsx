@@ -10,6 +10,7 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import registerUser from "@/app/services/register";
 import { RegisterInfo } from "@/types";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
@@ -71,6 +72,12 @@ const RegisterPage: FC = () => {
                 Register
               </Button>
             </form>
+            <p className="leading-7 [&:not(:first-child)]:mt-6 text-center mt-2">
+              Already have an account?{" "}
+              <Link className="underline" href="/login">
+                Login
+              </Link>
+            </p>
           </CardContent>
         </CardHeader>
       </Card>

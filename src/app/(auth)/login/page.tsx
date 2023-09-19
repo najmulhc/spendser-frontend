@@ -10,6 +10,7 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { setUser } from "@/app/redux/features/userSlice";
 import login from "@/app/services/login";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FC, useState } from "react";
 import { FieldValues, Form, useForm } from "react-hook-form";
@@ -74,6 +75,13 @@ const LoginPage: FC = () => {
                 Login
               </Button>
             </form>
+            <p className="leading-7 [&:not(:first-child)]:mt-6 text-center mt-2">
+              New to <b>Spendser</b>?{" "}
+              <Link className="underline" href="/register">
+       
+                Register
+              </Link>
+            </p>
           </CardContent>
         </CardHeader>
       </Card>
