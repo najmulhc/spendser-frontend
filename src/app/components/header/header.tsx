@@ -21,16 +21,49 @@ const Header = () => {
           <Logo
             width={32}
             height={32}
-            className="stroke-black dark:stroke-white"
+            className="stroke-black fill-none dark:stroke-white"
           />
           <span className="hidden md:block">Spendser</span>
         </h1>
       </Link>
       <NavigationMenu>
-        <NavigationMenuList>
+        <NavigationMenuList className="flex jusify-end items-center gap-4">
+          <NavigationMenuItem>
+            <Link
+              className="opacity-80 hover:opacity-100 hover:font-medium"
+              href="/"
+            >
+              Home
+            </Link>
+          </NavigationMenuItem>
+          {!user.username && (
+            <>
+              <NavigationMenuItem>
+                <Link
+                  className="opacity-80 hover:opacity-100 hover:font-medium"
+                  href="/contact"
+                >
+                  Contact
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link
+                  className="opacity-80 hover:opacity-100 hover:font-medium"
+                  href="/pricing"
+                >
+                  Pricing
+                </Link>
+              </NavigationMenuItem>
+            </>
+          )}
           <NavigationMenuItem>
             {user.username ? (
-              <Link className="opacity-80 hover:opacity-100" href="/dashboard">Dashboard</Link>
+              <Link
+                className="opacity-80 hover:opacity-100 hover:font-medium"
+                href="/dashboard"
+              >
+                Dashboard
+              </Link>
             ) : (
               <Button>
                 <Link href="/login">Login</Link>
