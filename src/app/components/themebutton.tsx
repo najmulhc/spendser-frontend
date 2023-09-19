@@ -17,7 +17,7 @@ const ThemeButton = () => {
     }
   }, [isDark, setTheme]);
   return (
-    <>
+    <div>
       <div className="flex items-center space-x-2 my-4">
         <Switch
           checked={isDark}
@@ -27,7 +27,7 @@ const ThemeButton = () => {
         />
         <Label htmlFor="dark-mode">Dark Mode</Label>
       </div>
-    </>
+    </div>
   );
 };
 

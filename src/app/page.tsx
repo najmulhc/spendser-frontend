@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export default function Home() {
 
   return (
-    <>
+    <div>
       <Header />
       <main className="min-w-screen min-h-screen flex flex-col items-center justify-center gap-8">
         <h1 className="croll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center">
@@ -18,6 +18,6 @@ export default function Home() {
           </Link>
         </Button>
       </main>
-    </>
+    </div>
   );
 }

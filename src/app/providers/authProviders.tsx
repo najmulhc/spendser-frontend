@@ -13,7 +13,7 @@ const AuthProtector = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
  
   if (user.username) {
-    return <>{children}</>;
+    return <div>{children}</div>;
   } else {
   
      return (
