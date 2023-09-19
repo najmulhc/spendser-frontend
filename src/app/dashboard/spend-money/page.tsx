@@ -1,6 +1,4 @@
-"use client";
-
-import Link from "next/link";
+"use client"; 
 import PageMain from "../components/PageMain";
 import { Button } from "@/app/components/ui/button";
 import {
@@ -9,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { setAccount } from "@/app/redux/features/accountSlice";
