@@ -2,6 +2,7 @@
 import AddMoneyIcon from "@/app/components/icons/AddMoneyIcon";
 import Home from "@/app/components/icons/Home";
 import SpendMoneyIcon from "@/app/components/icons/SpendMoneyIcon";
+import UserIcon from "@/app/components/icons/User";
 import { Button } from "@/app/components/ui/button";
 import { Separator } from "@/app/components/ui/separator";
 import Link from "next/link";
@@ -52,6 +53,20 @@ const DashboardSidebar = () => {
           <span className="hidden md:block">
             {" "}
             {!isSideBar && "Spend Money"}
+          </span>
+        </Button>
+      </Link>
+      <Link href="/dashboard/profile">
+        {" "}
+        <Button variant="ghost" className="w-full flex justify-start gap-2 ">
+          <UserIcon
+            className="stroke-black dark:stroke-white"
+            width={20}
+            height={20}
+          />
+          <span className="hidden md:block">
+            {" "}
+            {!isSideBar && "Profile"}
           </span>
         </Button>
       </Link>

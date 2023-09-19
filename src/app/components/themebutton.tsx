@@ -1,24 +1,32 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Button } from "./ui/button";
-import Moon from "./icons/Moon";
-import Sun from "./icons/Sun";
+import { useEffect, useState } from "react";
+import { Switch } from "./ui/switch";
+import { Label } from "./ui/label";
 
 const ThemeButton = () => {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+  const [isDark, setIsDark] = useState<boolean>(theme === "dark");
+
+  useEffect(() => {
+    if (isDark) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }, [isDark, setTheme]);
   return (
     <>
-      <Button variant="ghost" className="dark:hidden block" onClick={() => setTheme("dark")}>
-        <Sun width={24} height={24} className="dark:stroke-white stroke-black" />
-      </Button>
-      <Button
-        variant="ghost"
-        className="dark:block hidden"
-        onClick={() => setTheme("light")}
-      >
-        <Moon width={24} height={24} className="dark:stroke-white stroke-black" />
-      </Button>
+      <div className="flex items-center space-x-2 my-4">
+        <Switch
+          checked={isDark}
+          onCheckedChange={() => {
+            setIsDark(!isDark);
+          }} id="dark-mode"
+        />
+        <Label htmlFor="dark-mode">Dark Mode</Label>
+      </div>
     </>
   );
 };
