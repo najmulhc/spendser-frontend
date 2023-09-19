@@ -1,8 +1,6 @@
 "use client";
 import AddMoneyIcon from "@/app/components/icons/AddMoneyIcon";
 import Home from "@/app/components/icons/Home";
-import Logo from "@/app/components/icons/Logo";
-import Moon from "@/app/components/icons/Moon";
 import SpendMoneyIcon from "@/app/components/icons/SpendMoneyIcon";
 import { Button } from "@/app/components/ui/button";
 import { Separator } from "@/app/components/ui/separator";
@@ -14,40 +12,21 @@ const DashboardSidebar = () => {
   const [isSideBar, setIsSideBar] = useState<boolean>(false);
   return (
     <aside
-      className={`sticky  top-[70px] tranistion p-2  h-[calc(100vh-70px)] border-right `}
+      className={`sticky  top-[70px] tranistion p-2  h-[calc(100vh-70px)] border-right ${!isSideBar &&"md:w-[200px]"} `}
       onClick={() => {
         setIsSideBar(!isSideBar);
       }}
     >
-      <h1
-        className={`text-xl ${
-          !isSideBar
-            ? "text-left w-[250px]"
-            : "w-full flex items-center justify-center"
-        } font-semibold mb-4 transition-all`}
-      >
-        {isSideBar ? (
-          <Logo
-            className="stroke-black dark:stroke-white"
-            width={24}
-            height={24}
-          />
-        ) : (
-          "Dashboard"
-        )}
-      </h1>
-
       <Link href="/dashboard">
-        <Button
-          variant="ghost"
-          className="w-full flex justify-start items-start gap-2 "
-        >
+        <Button variant="ghost" className="w-full flex  justify-start ">
           <Home
-            className="stroke-black dark:stroke-white"
+            className="stroke-black dark:stroke-white mr-2"
             width={20}
             height={20}
           />
-          {!isSideBar && "Dashboard Home"}
+          <span className="hidden md:block">
+            {!isSideBar && "Dashboard"}
+          </span>
         </Button>
       </Link>
 
@@ -58,7 +37,7 @@ const DashboardSidebar = () => {
             width={20}
             height={20}
           />
-          {!isSideBar && "Add Money"}
+          <span className="hidden md:block"> {!isSideBar && "Add Money"}</span>
         </Button>
       </Link>
 
@@ -70,7 +49,10 @@ const DashboardSidebar = () => {
             width={20}
             height={20}
           />
-          {!isSideBar && "Spend Money"}
+          <span className="hidden md:block">
+            {" "}
+            {!isSideBar && "Spend Money"}
+          </span>
         </Button>
       </Link>
     </aside>

@@ -16,8 +16,8 @@ const Page = () => {
         </h2>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4 mt-4">
-          <AccountCard title="Balence" amount={balence} />
-          <AccountCard title="Diposit" amount={deposit} />
+          <AccountCard title="Balance" amount={balence} />
+          <AccountCard title="Deposit" amount={deposit} />
           <AccountCard title="Withdraw" amount={withdraw} />
         </div>
       </section>

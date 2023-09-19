@@ -29,7 +29,7 @@ const Header = () => {
   }, [dispatch]);
 
   return (
-    <header className="w-full min-h-[60px]  px-4 md:px-[4rem] flex items-center justify-between">
+    <header className="sticky top-0 left-0 min-w-screen max-w-screen z-10  min-h-[60px]  px-4 md:px-[4rem] flex items-center justify-between bg-white dark:bg-[#09090b]">
       <Link href="/">
         <h1 className="flex justify-start items-center gap-2 text-3xl font-semibold">
           <Logo
