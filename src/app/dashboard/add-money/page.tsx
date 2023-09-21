@@ -30,7 +30,7 @@ const AddMoneyPage = () => {
       type: "add",
     });
     dispatch(setAccount({ ...account }));
-    router.push("/dashboard")
+    router.push("/dashboard");
   };
 
   return (

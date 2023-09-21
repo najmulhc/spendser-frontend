@@ -78,7 +78,6 @@ const LoginPage: FC = () => {
             <p className="leading-7 [&:not(:first-child)]:mt-6 text-center mt-2">
               New to <b>Spendser</b>?{" "}
               <Link className="underline" href="/register">
-       
                 Register
               </Link>
             </p>
