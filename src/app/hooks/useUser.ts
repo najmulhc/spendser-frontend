@@ -6,22 +6,43 @@ import { useSelector } from "react-redux";
 import { StoreType } from "../redux/store";
 import { useDispatch } from "react-redux";
 import { setAccount } from "../redux/features/accountSlice";
+import { setType } from "../redux/features/resourceSlice";
 
-const useUser = (token:string) => {
+const useUser = (token: string) => {
   const [stateUser, setStateUser] = useState<User>({ username: "", email: "" });
 
   const { user } = useSelector((state: StoreType) => state);
-  const dipatch = useDispatch()
- 
+  const dispatch = useDispatch();
+  const deposits: string[] = [];
+  const withdraws: string[] = [];
 
   useEffect(() => {
     if (!user.email) {
       getUser(token).then((data) => {
-        dipatch(setAccount(data.user.account))
+        dispatch(setAccount(data.user.account));
         setStateUser({
           username: data.user?.username,
           email: data.user?.email,
         });
+        for (let element of data.user.resources) {
+          if ((element.type === "deposit")) {
+            deposits.push(element.name);
+          } else {
+            withdraws.push(element.name);
+          }
+        }
+        dispatch(
+          setType({
+            type: "deposit",
+            data: deposits,
+          })
+        );
+        dispatch(
+          setType({
+            type: "withdraw",
+            data: withdraws,
+          })
+        );
       });
     } else {
       setStateUser({
@@ -29,7 +50,7 @@ const useUser = (token:string) => {
         email: user.email,
       });
     }
-  }, [user.username, token, user.email]);
+  }, [user.username, token, user.email, dispatch]);
   return { user: stateUser };
 };
 

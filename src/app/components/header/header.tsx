@@ -51,7 +51,7 @@ const Header = () => {
             </Link>
           </NavigationMenuItem>
           {!user.username && (
-            <div>
+            <>
               <NavigationMenuItem>
                 <Link
                   className="opacity-80 hover:opacity-100 hover:font-medium"
@@ -68,7 +68,7 @@ const Header = () => {
                   Pricing
                 </Link>
               </NavigationMenuItem>
-            </div>
+            </>
           )}
           <NavigationMenuItem>
             {user.username ? (

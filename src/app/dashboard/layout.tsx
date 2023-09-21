@@ -10,7 +10,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <ThemeProvider>
       <Header />
       <AuthProtector>
-        <main className="flex relative min-w-screen">
+        <main className="flex relative top-0 min-w-screen">
           <DashboardSidebar />
           {children}
         </main>
