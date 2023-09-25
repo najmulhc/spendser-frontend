@@ -9,8 +9,6 @@ import { Button } from "@/app/components/ui/button";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { clearUser } from "@/app/redux/features/userSlice";
-import { Card, CardContent } from "@/app/components/ui/card";
-import { Input } from "@/app/components/ui/input";
 import ResourcePart from "../components/ResourcePart";
 
 const ProfilePage = () => {
