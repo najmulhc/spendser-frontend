@@ -35,14 +35,13 @@ const SpendMoneyPage = () => {
       token,
       amount,
       type: "spend",
+      resource: str,
     });
     dispatch(setAccount({ ...account }));
     router.push("/dashboard");
   };
 
-  useEffect(() => {
-    console.log(str);
-  }, [str])
+ 
 
   return (
     <PageMain className="min-w-screen min-h-screen flex justify-center items-center">

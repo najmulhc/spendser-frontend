@@ -30,4 +30,5 @@ export interface PostTransactionType {
   token: string;
   amount: number | string;
   type: "add" | "spend";
+  resource: string, 
 }

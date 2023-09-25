@@ -27,7 +27,7 @@ import SelectResource from "../components/SelectResource";
 
 const AddMoneyPage = () => {
   const { theme, setTheme } = useTheme();
-  const [resource, setResource] = useState<String>("");
+  const [resource, setResource] = useState<string>("");
   const token = window.localStorage.getItem("token") as string | "";
   const { deposit } = useSelector((state: StoreType) => state.resource);
   const dispatch = useDispatch();
@@ -39,6 +39,7 @@ const AddMoneyPage = () => {
       token,
       amount,
       type: "add",
+      resource: resource
     });
     dispatch(setAccount({ ...account }));
     router.push("/dashboard");
