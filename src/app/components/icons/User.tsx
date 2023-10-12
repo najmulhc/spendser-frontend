@@ -1,23 +1,18 @@
 import { IconProps } from "@/types";
+import React, { FC } from "react";
 
-const UserIcon: React.FC<IconProps> = ({ width, height, className }) => {
+const Trash: FC<IconProps> = ({ width, height, className }) => {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
-      viewBox="0 0 20 20"
-      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
       <path
-        d="M9.99997 13C6.8299 13 4.01077 14.5306 2.21597 16.906C1.82968 17.4172 1.63653 17.6728 1.64285 18.0183C1.64773 18.2852 1.81533 18.6219 2.02534 18.7867C2.29716 19 2.67384 19 3.4272 19H16.5727C17.3261 19 17.7028 19 17.9746 18.7867C18.1846 18.6219 18.3522 18.2852 18.3571 18.0183C18.3634 17.6728 18.1703 17.4172 17.784 16.906C15.9892 14.5306 13.17 13 9.99997 13Z"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9.99997 10C12.4853 10 14.5 7.98528 14.5 5.5C14.5 3.01472 12.4853 1 9.99997 1C7.51469 1 5.49997 3.01472 5.49997 5.5C5.49997 7.98528 7.51469 10 9.99997 10Z"
+        d="M9 3H15M3 6H21M19 6L18.2987 16.5193C18.1935 18.0975 18.1409 18.8867 17.8 19.485C17.4999 20.0118 17.0472 20.4353 16.5017 20.6997C15.882 21 15.0911 21 13.5093 21H10.4907C8.90891 21 8.11803 21 7.49834 20.6997C6.95276 20.4353 6.50009 20.0118 6.19998 19.485C5.85911 18.8867 5.8065 18.0975 5.70129 16.5193L5 6M10 10.5V15.5M14 10.5V15.5"
+
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -26,4 +21,4 @@ const UserIcon: React.FC<IconProps> = ({ width, height, className }) => {
   );
 };
 
-export default UserIcon;
+export default Trash;
