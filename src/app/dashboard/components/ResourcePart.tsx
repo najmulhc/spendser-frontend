@@ -2,6 +2,7 @@
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
+import { setAccount } from "@/app/redux/features/accountSlice";
 import { setType } from "@/app/redux/features/resourceSlice";
 import { StoreType } from "@/app/redux/store";
 import postResource from "@/app/services/postResource";
@@ -12,18 +13,21 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 const ResourcePart = ({ type }: { type: "deposit" | "withdraw" }) => {
-  const [state, setState] = useState<string[]>([]);
   const { handleSubmit, register, reset } = useForm();
   const token = localStorage.getItem("token") as string | "";
   const resource = useSelector((state: StoreType) => state.resource);
   const dispatch = useDispatch();
   const onSubmit = async (data: any) => {
-    const result: string[] =
-      (await postResource({
-        token,
-        type,
-        name: data.text,
-      })) || [];
+    const response: any = await postResource({
+      token,
+      type,
+      name: data.text,
+    });
+    let result: string[] = [];
+    if (response[0]) {
+      result = response;
+    } else {}
+
     dispatch(
       setType({
         type,
@@ -51,10 +55,19 @@ const ResourcePart = ({ type }: { type: "deposit" | "withdraw" }) => {
     const data = await response.json();
     if (data.user) {
       const { resources } = data.user;
+      const items = [];
+      for (let resource of resources) {
+        items.push(resource.name);
+      }
       dispatch(
         setType({
           type,
-          data: resources,
+          data: items,
+        })
+      );
+      dispatch(
+        setAccount({
+          ...data.user.account,
         })
       );
     }

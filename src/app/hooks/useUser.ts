@@ -7,6 +7,7 @@ import { StoreType } from "../redux/store";
 import { useDispatch } from "react-redux";
 import { setAccount } from "../redux/features/accountSlice";
 import { setType } from "../redux/features/resourceSlice";
+import { setUser } from "../redux/features/userSlice";
 
 const useUser = (token: string) => {
   const [stateUser, setStateUser] = useState<User>({ username: "", email: "" });
@@ -25,12 +26,16 @@ const useUser = (token: string) => {
           email: data.user?.email,
         });
         for (let element of data.user.resources) {
-          if ((element.type === "deposit")) {
+          if (element.type === "deposit") {
             deposits.push(element.name);
           } else {
             withdraws.push(element.name);
           }
         }
+
+        dispatch(
+          setUser({ username: data.user?.username, email: data.user?.email })
+        );
         dispatch(
           setType({
             type: "deposit",

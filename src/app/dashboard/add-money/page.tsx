@@ -34,20 +34,18 @@ const AddMoneyPage = () => {
   const router = useRouter();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data: any) => {
+    
     const { amount } = data;
     const account = await postTransaction({
       token,
       amount,
-      type: "add",
-      resource: resource
+      type: "deposit",
+      resource: resource,
     });
-    dispatch(setAccount({ ...account }));
-    router.push("/dashboard");
+    dispatch(setAccount(account));
+    router.push("/dashboard") 
   };
 
-  useEffect(() => {
-    console.log(resource);
-  }, [resource]);
   return (
     <PageMain className="min-w-screen min-h-screen flex justify-center items-center">
       <Card>

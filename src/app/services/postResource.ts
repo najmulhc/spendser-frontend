@@ -7,11 +7,7 @@ const postResource = async ({
   name: string;
   token: string;
 }) => {
-  console.log({
-    token,
-    name,
-    type,
-  });
+ 
 
   const response = await fetch(
     "https://viridian-pelican-belt.cyclic.app/user/resources",
@@ -28,12 +24,14 @@ const postResource = async ({
     }
   );
   const data = await response.json();
-  if (data.success) {
+  console.log(data)
+  if (data.success === true) {
     const returnedData = [];
     for (let element of data.resources) {
       returnedData.push(element.name);
     }
     return returnedData;
   }
+
 };
 export default postResource;

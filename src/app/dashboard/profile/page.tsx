@@ -15,6 +15,7 @@ const ProfilePage = () => {
   const { user } = useSelector((state: StoreType) => state);
   const dispatch = useDispatch();
   const router = useRouter();
+  console.log(user)
   return (
     <PageMain className="flex flex-col gap-8 ">
       <section>

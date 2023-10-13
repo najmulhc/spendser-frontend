@@ -34,7 +34,7 @@ const SpendMoneyPage = () => {
     const account = await postTransaction({
       token,
       amount,
-      type: "spend",
+      type: "withdraw",
       resource: str,
     });
     dispatch(setAccount({ ...account }));

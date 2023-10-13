@@ -29,6 +29,6 @@ export interface Account {
 export interface PostTransactionType {
   token: string;
   amount: number | string;
-  type: "add" | "spend";
+  type: "deposit" | "withdraw";
   resource: string, 
 }

@@ -3,7 +3,8 @@ import { PostTransactionType } from "@/types";
 const postTransaction = async ({
   token,
   amount,
-  type, resource
+  type,
+  resource,
 }: PostTransactionType) => {
   const response = await fetch(
     "https://viridian-pelican-belt.cyclic.app/transactions/",
@@ -15,14 +16,16 @@ const postTransaction = async ({
       },
       body: JSON.stringify({
         type,
-        amount,  resource
+        amount,
+        resource,
       }),
     }
   );
   const data = await response.json();
-  console.log(data);
   if (data.success) {
     return data.account;
+  } else {
+    console.error(data.message);
   }
 };
 
