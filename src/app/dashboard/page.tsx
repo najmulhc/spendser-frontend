@@ -4,11 +4,29 @@ import AccountCard from "./components/AccountCard";
 import { useSelector } from "react-redux";
 import { StoreType } from "../redux/store";
 import TransactionTable from "./components/TransactionTable";
+import getMonthResources from "../services/getMonthResources";
+import { useEffect, useState } from "react";
 
 const Page = () => {
   const { balence, deposit, withdraw } = useSelector(
     (state: StoreType) => state.account
   );
+  const token = localStorage.getItem("token") as string;
+  const [resources, setResources] = useState([]);
+  const [monthlyAccount, setMonthlyAccount] = useState<any>({})
+
+  useEffect(() => {
+    getMonthResources(token).then((res) => {
+      setResources(
+        res.resources
+          .filter((item: any) => item.type === "withdraw")
+      );
+      setMonthlyAccount(res.account)
+    });
+  }, []);
+
+ 
+
   return (
     <PageMain>
       <section className=" w-full  mb-24">
@@ -38,7 +56,7 @@ const Page = () => {
               Total spent
             </h3>
             <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
-              $500
+              ${monthlyAccount.withdraw}
             </h3>
           </div>
           <div className="flex justify-between items-center py-2">
@@ -46,28 +64,30 @@ const Page = () => {
               Total earned
             </h3>
             <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
-              $690
+              ${monthlyAccount.deposit}
             </h3>
           </div>
           <h2 className="scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight transition-colors mt-6">
             Top Spendings this month
           </h2>
-          <div className="flex justify-between items-center py-2">
-            <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
-              Food
-            </h3>
-            <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
-              $273
-            </h3>
-          </div>
-          <div className="flex justify-between items-center py-2">
-            <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
-              House Rent
-            </h3>
-            <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
-              $200
-            </h3>
-          </div>
+          {resources[0] &&
+            resources
+              .sort(function (a:any, b:any) {
+                return a.total - b.total
+              })
+              .reverse().map((item: any) => (
+                <div
+                  className="flex justify-between items-center py-2"
+                  key={item.name}
+                >
+                  <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
+                    {item.name}
+                  </h3>
+                  <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
+                    ${item.total}
+                  </h3>
+                </div>
+              ))}
         </div>
       </section>
     </PageMain>
