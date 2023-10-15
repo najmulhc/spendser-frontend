@@ -1,3 +1,4 @@
+import { Badge } from "@/app/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -6,7 +7,37 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/components/ui/table";
+import getTimeDifference from "@/lib/getTimeDifference";
 import React from "react";
+
+const TransactionTableRow = () => {
+  let type = "Withdraw";
+  const time = getTimeDifference(1697314575930);
+  const amount = 100;
+  return (
+    <TableRow>
+      <TableCell>Bought 5 carrots</TableCell>
+      <TableCell>
+        <Badge
+          variant="secondary"
+          className={`bg-opacity-20 ${
+            type === "Deposit"
+              ? "bg-green-500 text-green-600"
+              : "bg-red-500 text-red-600"
+          }`}
+        >
+          {type}
+        </Badge>
+      </TableCell>
+      <TableCell>Food</TableCell>
+      <TableCell>${amount}</TableCell>
+      <TableCell>
+ 
+        {time.value} {time.unit} ago
+      </TableCell>
+    </TableRow>
+  );
+};
 
 const TransactionTable = () => {
   return (
@@ -21,74 +52,10 @@ const TransactionTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-            <TableCell>
-                Bought 5 carrots
-            </TableCell>
-            <TableCell>
-                Withdraw
-            </TableCell>
-            <TableCell>
-                Food
-            </TableCell> 
-            <TableCell>
-                $4.20
-            </TableCell>
-            <TableCell>
-                3 mins ago
-            </TableCell>
-        </TableRow>
-        <TableRow>
-            <TableCell>
-                Bought 5 carrots
-            </TableCell>
-            <TableCell>
-                Withdraw
-            </TableCell>
-            <TableCell>
-                Food
-            </TableCell> 
-            <TableCell>
-                $4.20
-            </TableCell>
-            <TableCell>
-                3 mins ago
-            </TableCell>
-        </TableRow>
-        <TableRow>
-            <TableCell>
-                Bought 5 carrots
-            </TableCell>
-            <TableCell>
-                Withdraw
-            </TableCell>
-            <TableCell>
-                Food
-            </TableCell> 
-            <TableCell>
-                $4.20
-            </TableCell>
-            <TableCell>
-                3 mins ago
-            </TableCell>
-        </TableRow>
-        <TableRow>
-            <TableCell>
-                Bought 5 carrots
-            </TableCell>
-            <TableCell>
-                Withdraw
-            </TableCell>
-            <TableCell>
-                Food
-            </TableCell> 
-            <TableCell>
-                $4.20
-            </TableCell>
-            <TableCell>
-                3 mins ago
-            </TableCell>
-        </TableRow>
+        <TransactionTableRow />
+        <TransactionTableRow />
+        <TransactionTableRow />
+        <TransactionTableRow />
       </TableBody>
     </Table>
   );
