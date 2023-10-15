@@ -9,10 +9,8 @@ import useUser from "@/app/hooks/useUser";
 
 export const dynamic = "force-dynamic";
 const Header = () => {
- 
   const token = localStorage.getItem("token") as string;
   const { user } = useUser(token);
-  console.log(user)
   return (
     <header className="sticky top-0 left-0 min-w-screen max-w-screen z-10  min-h-[60px]  px-4 md:px-[4rem] flex items-center justify-between bg-white dark:bg-[#09090b]">
       <Link href="/">
