@@ -31,4 +31,5 @@ export interface PostTransactionType {
   amount: number | string;
   type: "deposit" | "withdraw";
   resource: string, 
+  description: string,
 }

@@ -26,7 +26,8 @@ const ResourcePart = ({ type }: { type: "deposit" | "withdraw" }) => {
     let result: string[] = [];
     if (response[0]) {
       result = response;
-    } else {}
+    } else {
+    }
 
     dispatch(
       setType({
@@ -52,9 +53,10 @@ const ResourcePart = ({ type }: { type: "deposit" | "withdraw" }) => {
         }),
       }
     );
-    const data = await response.json();
-    if (data.user) {
-      const { resources } = data.user;
+    const ata = await response.json();
+    console.log(ata);
+    if (ata.user) {
+      const { resources } = ata.user;
       const items = [];
       for (let resource of resources) {
         items.push(resource.name);
@@ -67,7 +69,7 @@ const ResourcePart = ({ type }: { type: "deposit" | "withdraw" }) => {
       );
       dispatch(
         setAccount({
-          ...data.user.account,
+          ...ata.user.account,
         })
       );
     }

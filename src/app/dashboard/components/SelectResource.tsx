@@ -12,7 +12,7 @@ const SelectResource = ({
 }) => {
   const { theme } = useTheme();
   return (
-    <Select
+    <Select id="resource"
       onChange={(e: any) => {
         setResource(e.value);
       }}

@@ -5,6 +5,7 @@ const postTransaction = async ({
   amount,
   type,
   resource,
+  description
 }: PostTransactionType) => {
   const response = await fetch(
     "https://viridian-pelican-belt.cyclic.app/transactions/",
@@ -18,6 +19,7 @@ const postTransaction = async ({
         type,
         amount,
         resource,
+        description
       }),
     }
   );

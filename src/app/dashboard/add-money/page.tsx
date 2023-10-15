@@ -34,16 +34,16 @@ const AddMoneyPage = () => {
   const router = useRouter();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data: any) => {
-    
-    const { amount } = data;
+    const { amount , description} = data;
     const account = await postTransaction({
       token,
       amount,
       type: "deposit",
       resource: resource,
+      description
     });
     dispatch(setAccount(account));
-    router.push("/dashboard") 
+    router.push("/dashboard");
   };
 
   return (
@@ -67,9 +67,19 @@ const AddMoneyPage = () => {
               />
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="amount">Select type</Label>
+              <Label htmlFor="resource">Select type</Label>
               <SelectResource type={deposit} setResource={setResource} />
             </div>
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="description">Description</Label>
+              <Input
+                id="description"
+                type="text"
+                placeholder="Write in detail."
+                {...register("description")}
+              />
+            </div>
+
             <Button type="submit" className="w-full">
               Submit
             </Button>

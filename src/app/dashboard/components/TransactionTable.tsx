@@ -1,3 +1,4 @@
+"use client";
 import { Badge } from "@/app/components/ui/badge";
 import {
   Table,
@@ -7,21 +8,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/components/ui/table";
+import getTransactions from "@/app/services/getTransactions";
 import getTimeDifference from "@/lib/getTimeDifference";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const TransactionTableRow = () => {
-  let type = "Withdraw";
-  const time = getTimeDifference(1697314575930);
-  const amount = 100;
+const TransactionTableRow = ({ transaction }: { transaction: any }) => {
+  const { type, description, amount, resource, time } = transaction;
+  const usingTime = getTimeDifference(time);
   return (
     <TableRow>
-      <TableCell>Bought 5 carrots</TableCell>
+      <TableCell>{description}</TableCell>
       <TableCell>
         <Badge
           variant="secondary"
           className={`bg-opacity-20 ${
-            type === "Deposit"
+            type === "deposit"
               ? "bg-green-500 text-green-600"
               : "bg-red-500 text-red-600"
           }`}
@@ -29,17 +30,25 @@ const TransactionTableRow = () => {
           {type}
         </Badge>
       </TableCell>
-      <TableCell>Food</TableCell>
+      <TableCell>{resource.name}</TableCell>
       <TableCell>${amount}</TableCell>
       <TableCell>
- 
-        {time.value} {time.unit} ago
+        {usingTime.value} {usingTime.unit} ago
       </TableCell>
     </TableRow>
   );
 };
 
 const TransactionTable = () => {
+  const [transactions, setTransactions] = useState([]);
+
+  const token = localStorage.getItem("token") as string;
+
+  useEffect(() => {
+    getTransactions(token).then((data) => {
+      setTransactions(data.transactions);
+    });
+  }, []);
   return (
     <Table className="">
       <TableHeader>
@@ -52,10 +61,13 @@ const TransactionTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TransactionTableRow />
-        <TransactionTableRow />
-        <TransactionTableRow />
-        <TransactionTableRow />
+        {transactions
+          .sort(function (a:any, b:any) {
+            return b.time - a.time;
+          })
+          .map((tr) => (
+            <TransactionTableRow key={tr} transaction={tr} />
+          ))}
       </TableBody>
     </Table>
   );

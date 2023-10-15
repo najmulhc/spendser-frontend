@@ -26,22 +26,19 @@ const SpendMoneyPage = () => {
   const [resource, setResource] = useState<string>("Select a type");
   const { register, handleSubmit, reset } = useForm();
   const { withdraw } = useSelector((state: StoreType) => state.resource);
-  const [str, setStr] = useState<string>("");
-  const onSubmit = async (data: any) => {
-    const { amount } = data;
 
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    const { amount, description } = data;
     const account = await postTransaction({
       token,
       amount,
       type: "withdraw",
-      resource: str,
+      resource: resource,
+      description,
     });
-    dispatch(setAccount({ ...account }));
+    dispatch(setAccount(account));
     router.push("/dashboard");
   };
-
- 
 
   return (
     <PageMain className="min-w-screen min-h-screen flex justify-center items-center">
@@ -63,10 +60,18 @@ const SpendMoneyPage = () => {
                 {...register("amount")}
               />
             </div>
-
             <div className="grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="amount">Type</Label>
-              <SelectResource setResource={setStr} type={withdraw} />
+              <Label htmlFor="resource">Select type</Label>
+              <SelectResource type={withdraw} setResource={setResource} />
+            </div>
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="description">Description</Label>
+              <Input
+                id="description"
+                type="text"
+                placeholder="Write in detail."
+                {...register("description")}
+              />
             </div>
 
             <Button type="submit" className="w-full">

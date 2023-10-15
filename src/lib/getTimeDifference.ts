@@ -38,7 +38,7 @@ function getTimeDifference(time:number) {
   } else {
     return {
       value: minutessDifference,
-      units: "minutes",
+      unit: "minutes",
     };
   }
 }
