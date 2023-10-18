@@ -18,6 +18,9 @@ export const metadata: Metadata = {
       url: "https://najmulhc.vercel.app",
     },
   ],
+  icons: [
+    "/logo.svg"
+  ]
 };
 
 export default function RootLayout({
