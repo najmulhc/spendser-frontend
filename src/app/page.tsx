@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       <main className="min-w-screen min-h-screen flex flex-col items-center justify-center gap-8">
         <h1 className="croll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ">
-       This is a new power of multiple displays
+      Manage your money with the best <b>Solution</b>
         </h1>
         <Button>
           <Link href="/register">
