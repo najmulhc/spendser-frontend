@@ -1,34 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spendser - Your personal money manager.
 
-## Getting Started
+**Spendser**  is a full stack personal money management tool that has been built using MERN stack and TypeScript. 
 
-First, run the development server:
+## Problem Statement
+I was planning to develop an app that will help me to analyze all of my transactions and allow me to take better financial decisions. 
 
-```bash
+## Core Features
+* A JWT token based authentication that persists account information even refreshing the page. 
+* Ability to Post transaction information that can be represented in the dashboard. 
+* Fully customizable dark mode system. 
+* An analyzed view of transactions that will allow us to take better financial decisions.
+
+## Tech stack
+On the frontend side, I have used **Next.js** version 13.4 with **TailwindCSS**. You can see the whole UI is built on top of **shadcnUI**. The app also includes packages like **Redux**, **zod**, **React-select** etc. This whole project is created using ***TypeScript***. 
+
+## Installation
+In order to install this application in your local mechine, you can ***clone*** this repo and run the code below 
+```
+npm install 
+```
+To run the installed web app on your local host, you need to run this command: 
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contribution 
+As it is a personal portfolio project, any contribution to this project cannot be taken. But we have plans to take open source contributions later. So, stay tuned with us. 
