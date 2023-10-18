@@ -1,5 +1,6 @@
 "use client";
 import { Badge } from "@/app/components/ui/badge";
+import { Button } from "@/app/components/ui/button";
 import {
   Table,
   TableBody,
@@ -41,6 +42,7 @@ const TransactionTableRow = ({ transaction }: { transaction: any }) => {
 
 const TransactionTable = () => {
   const [transactions, setTransactions] = useState([]);
+  const [page, setPage] = useState<number>(1);
 
   const token = localStorage.getItem("token") as string;
 
@@ -50,26 +52,49 @@ const TransactionTable = () => {
     });
   }, []);
   return (
-    <Table className="">
-      <TableHeader>
-        <TableRow>
-          <TableHead>Description</TableHead>
-          <TableHead>Type</TableHead>
-          <TableHead>Resource</TableHead>
-          <TableHead>Amount</TableHead>
-          <TableHead>Time</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {transactions
-          .sort(function (a:any, b:any) {
-            return b.time - a.time;
-          })
-          .map((tr) => (
-            <TransactionTableRow key={tr} transaction={tr} />
-          ))}
-      </TableBody>
-    </Table>
+    <>
+      <Table className="">
+        <TableHeader>
+          <TableRow>
+            <TableHead>Description</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Resource</TableHead>
+            <TableHead>Amount</TableHead>
+            <TableHead>Time</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {transactions
+            .sort(function (a: any, b: any) {
+              return b.time - a.time;
+            })
+            .slice((page - 1) * 5 + 0, page * 5)
+            .map((tr) => (
+              <TransactionTableRow key={tr} transaction={tr} />
+            ))}
+        </TableBody>
+      </Table>
+      <div className="w-full flex justify-between">
+        <Button
+          disabled={transactions[(page * 5) - 6] === undefined}
+          variant="outline"
+          onClick={() => {
+            setPage(page - 1);
+          }}
+        >
+          Previous page
+        </Button>
+        <Button
+          variant="outline"
+          disabled={transactions[page * 5] === undefined}
+          onClick={() => {
+            setPage(page + 1);
+          }}
+        >
+          Next Page
+        </Button>
+      </div>
+    </>
   );
 };
 
