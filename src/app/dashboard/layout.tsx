@@ -2,6 +2,7 @@ import DashboardSidebar from "./components/DashboardSidebar";
 import ThemeProvider from "../providers/provider";
 import AuthProtector from "../providers/authProviders";
 import Header from "../components/header/header";
+import { Toaster } from "../components/ui/toaster";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <DashboardSidebar />
           {children}
         </main>
+        <Toaster/>
       </AuthProtector>
     </ThemeProvider>
   );

@@ -17,13 +17,12 @@ import postTransaction from "@/app/services/postTransaction";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { setAccount } from "@/app/redux/features/accountSlice";
-import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import { FileX } from "lucide-react";
 import { useSelector } from "react-redux";
 import { StoreType } from "@/app/redux/store";
 import { useEffect, useState } from "react";
 import SelectResource from "../components/SelectResource";
+import { useToast } from "@/app/components/ui/use-toast";
 
 const AddMoneyPage = () => {
   const { theme, setTheme } = useTheme();
@@ -32,17 +31,30 @@ const AddMoneyPage = () => {
   const { deposit } = useSelector((state: StoreType) => state.resource);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { toast } = useToast();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data: any) => {
-    const { amount , description} = data;
+    const { amount, description } = data;
     const account = await postTransaction({
       token,
       amount,
       type: "deposit",
       resource: resource,
-      description
+      description,
     });
-    dispatch(setAccount(account));
+    toast({
+      title: "Transaction added",
+      description: "we have the description",
+    });
+
+    if (account.message) {
+      toast({
+        title: "Transaction Error!",
+        description: account.message,
+      });
+    } else {
+      dispatch(setAccount(account));
+    }
     router.push("/dashboard");
   };
 

@@ -40,14 +40,14 @@ const Page = () => {
           <AccountCard title="Withdraw" amount={withdraw} />
         </div>
       </section>
-      <section className="w-full  flex justify-between ">
-        <div className="md:w-[70%]">
+      <section className="w-full  md:flex gap-4 justify-between ">
+        <div className="max-w-full md:w-[70%] ">
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
             Recent Transactions
           </h2>
           <TransactionTable />
         </div>
-        <div className="w-[25%]">
+        <div className="max-w-full md:w-[25%]">
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
             This month
           </h2>

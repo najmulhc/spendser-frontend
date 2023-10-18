@@ -27,7 +27,7 @@ const postTransaction = async ({
   if (data.success) {
     return data.account;
   } else {
-    console.error(data.message);
+    return data;
   }
 };
 

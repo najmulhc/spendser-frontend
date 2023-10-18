@@ -103,7 +103,11 @@ const ResourcePart = ({ type }: { type: "deposit" | "withdraw" }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full  items-center space-x-4"
       >
-        <Input type="text" {...register("text")} placeholder="Deposit type" />
+        <Input
+          type="text"
+          {...register("text")}
+          placeholder={`${type} name.`}
+        />
         <Button type="submit" className="block min-w-max">
           Add This
         </Button>
